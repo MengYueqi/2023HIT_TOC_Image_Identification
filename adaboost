@@ -1,0 +1,45 @@
+import numpy as np
+import pandas as pd
+import cv2
+import os
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+data_path = os.path.abspath("C://Users//yhh68//Downloads//archive")
+
+#为了存储图像和标签的列表
+images = []
+labels = []
+
+# 遍历每个标签的文件夹
+for label_folder in os.listdir(data_path):
+    folder_path = os.path.join(data_path, label_folder)
+    
+    # 如果不是文件夹，就跳过
+    if not os.path.isdir(folder_path):
+        continue
+    
+    #遍历该文件夹内的PNG图片
+    for image_file in os.listdir(folder_path):
+        if image_file.endswith('.png'):
+            image_path = os.path.join(folder_path, image_file)
+            image = cv2.imread(image_path)
+            image = cv2.resize(image, (32, 32))
+            image = image.flatten()
+            images.append(image)
+            labels.append(label_folder)
+
+X = np.array(images)
+y = np.array(labels)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+base_estimator = DecisionTreeClassifier(max_depth=2)
+adaboost = AdaBoostClassifier(estimator=base_estimator, n_estimators=50, random_state=42)
+adaboost.fit(X_train, y_train)
+
+y_pred = adaboost.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
