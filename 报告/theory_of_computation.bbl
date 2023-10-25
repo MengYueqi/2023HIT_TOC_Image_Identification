@@ -33,4 +33,34 @@ A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton, ``Imagenet classification with
   \url{https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ResNet}
+\BIBentryALTinterwordspacing
+K.~He, X.~Zhang, S.~Ren, and J.~Sun, ``Deep residual learning for image
+  recognition,'' in \emph{2016 {IEEE} Conference on Computer Vision and Pattern
+  Recognition, {CVPR} 2016, Las Vegas, NV, USA, June 27-30, 2016}.\hskip 1em
+  plus 0.5em minus 0.4em\relax {IEEE} Computer Society, 2016, pp. 770--778.
+  [Online]. Available: \url{https://doi.org/10.1109/CVPR.2016.90}
+\BIBentrySTDinterwordspacing
+
+\bibitem{YOLO}
+\BIBentryALTinterwordspacing
+J.~Redmon, S.~K. Divvala, R.~B. Girshick, and A.~Farhadi, ``You only look once:
+  Unified, real-time object detection,'' in \emph{2016 {IEEE} Conference on
+  Computer Vision and Pattern Recognition, {CVPR} 2016, Las Vegas, NV, USA,
+  June 27-30, 2016}.\hskip 1em plus 0.5em minus 0.4em\relax {IEEE} Computer
+  Society, 2016, pp. 779--788. [Online]. Available:
+  \url{https://doi.org/10.1109/CVPR.2016.91}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Vision_Transformers}
+\BIBentryALTinterwordspacing
+A.~Dosovitskiy, L.~Beyer, A.~Kolesnikov, D.~Weissenborn, X.~Zhai,
+  T.~Unterthiner, M.~Dehghani, M.~Minderer, G.~Heigold, S.~Gelly, J.~Uszkoreit,
+  and N.~Houlsby, ``An image is worth 16x16 words: Transformers for image
+  recognition at scale,'' in \emph{9th International Conference on Learning
+  Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}.\hskip
+  1em plus 0.5em minus 0.4em\relax OpenReview.net, 2021. [Online]. Available:
+  \url{https://openreview.net/forum?id=YicbFdNTTy}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
