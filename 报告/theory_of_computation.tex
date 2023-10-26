@@ -8,7 +8,7 @@
 \usepackage{subfigure}
 \usepackage[graphicx]{realboxes}
 \usepackage{caption}
-
+\usepackage{float}
 
 \title{不同图像识别技术的对比与探究}
 \author{孟悦琦\quad 朱宸慷\quad 杨钧博\quad 李昌玟\quad 尹容乎}
@@ -32,7 +32,8 @@ AlexNet具有高于传统CV方法的识别准确度\cite{AlexNet}。
 YOLO是一种划时代的单阶段目标检测算法。YOLO使用单次前馈网络即可完成检测，检测速度极快；
 整图预测充分利用全局信息，检测精度高，因此被广泛使用\cite{YOLO}。
 另外还有，Transformer模型，其是一种采用自注意力机制的深度学习模型，这一机制可以按输入数据各部分重要性的不同而分配不同的权重。
-Transformer衍生出的ViT模型，也是一种识别准确度颇高的模型，且具有很强开创性的模型\cite{Vision_Transformers}。 \par
+通过借鉴Transformer的设计思想，Google设计出ViT模型，也是一种识别准确度颇高的模型，且具有很强开创性的模型\cite{Vision_Transformers}。
+在此基础上Facebook开发出LeViT模型，是其进一步分演进和发展\cite{LeViT} \par
 
 本文将通过对比传统模型和神经网络模型，来比较分析不同模型的优劣，并分析其中的原理。
 
@@ -41,7 +42,7 @@ Transformer衍生出的ViT模型，也是一种识别准确度颇高的模型，
 最终我们选择了kaggle上的Multilabel car and color dataset\footnote{可以在网站https://www.kaggle.com/datasets/julichitai/multilabel-small-car-and-color-dataset中获取}作为数据集。
 在数据集中，共包含三个品牌各三种颜色的车辆图片数据。数据集的部分图片如下：
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
 \subfigure[matiz blue]{
     \includegraphics[width=3cm]{./dataset_graph/dataset_1.jpg}
@@ -66,6 +67,39 @@ Transformer衍生出的ViT模型，也是一种识别准确度颇高的模型，
 
 此数据集共有9个类，同时样本数量较少，不同品牌间视觉特征可能相近，如何提升模型泛化能力和防过拟合是关键。
 此数据集很适合用来考察传统模型和神经网络之间的差别。
+
+\section{AlexNet对数据的识别分析}
+\subsection{对AlexNet的介绍}
+AlexNet 是一个深度卷积神经网络，它的结构如下：\cite{AlexNet}
+
+\begin{figure}[H]
+    \centering %表示居中
+    \includegraphics[height=4.5cm]{../AlexNet/AlexNet_arc.png}
+    \caption{AlexNet结构}
+\end{figure}
+
+AlexNet 主要特点：\par
+1. 更深的网络结构：AlexNet由 5 个卷积层、3 个全连接层和最后的 Softmax 分类层组成。 \par
+2. ReLU 激活函数：AlexNet 是第一个大规模使用 ReLU 作为激活函数的网络，这加速了训练过程。 \par
+3. Dropout：为了减少过拟合，AlexNet 在全连接层中使用了 Dropout。 \par
+4. 局部响应归一化（LRN）：在某些卷积层后使用了局部响应归一化。 \par
+5. 数据增强：为了进一步减少过拟合，AlexNet 使用了图像平移、翻转和颜色变化等数据增强技术。 \par
+
+\subsection{使用AlexNet对图像进行识别的效果分析}
+
+训练结果如下：
+
+\begin{figure}[H]
+    \centering %表示居中
+    \includegraphics[height=4.5cm]{../AlexNet/AlexNet.png}
+    \caption{AlexNet训练结果}
+\end{figure}
+
+在训练过程中，我们将数据集按 7：3 的比例划分为训练集和测试集。
+采用 AlexNet 进行训练，训练 50 轮后，发现模型对于测试集的预测准确率不断上升，最后趋于稳定，稳定在 55\% 左右；
+损失函数值也在不断下降，最终达到了 0.13。考虑到样本集中的数据量只有 2700 左右，数据量偏少，因此训练效果不是很理想。
+如果增大样本集规模，模型预测的准确率应该会有进一步提升。 \par
+在训练过程中发现，虽然损失函数值在下降，但是预测准确率却并未上升，有时甚至下降，这说明模型可能存在过拟合现象，这也可能是导致模型预测准确率不高的原因之一。
 
 \newpage
 \small

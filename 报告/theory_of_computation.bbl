@@ -63,4 +63,10 @@ A.~Dosovitskiy, L.~Beyer, A.~Kolesnikov, D.~Weissenborn, X.~Zhai,
   \url{https://openreview.net/forum?id=YicbFdNTTy}
 \BIBentrySTDinterwordspacing
 
+\bibitem{LeViT}
+B.~Graham, A.~El-Nouby, H.~Touvron, P.~Stock, A.~Joulin, H.~Jegou, and
+  M.~Douze, ``Levit: A vision transformer in convnet's clothing for faster
+  inference,'' in \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision (ICCV)}, October 2021, pp. 12\,259--12\,269.
+
 \end{thebibliography}
