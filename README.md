@@ -35,6 +35,7 @@ AdaBoost是Adaptive+Boosting的组合词。
 
 用公式表示如下：
 ![image](https://github.com/MengYueqi/2023HIT_TOC_Image_Identification/assets/93073249/754561b1-6c6a-4106-9946-a1b411bc014b)
+
 H(x)：最终强分类器，也称为加权多数投票分类器。
 h：弱分类器，也称为基分类器。
 α：弱分类器的权重，用于衡量弱分类器对最终分类器的重要性。
