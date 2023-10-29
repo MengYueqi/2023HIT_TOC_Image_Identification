@@ -62,7 +62,8 @@ AdaBoost 算法是提升算法（boosting algorithm）的一种，具有以下�
 - AdaBoost 算法在分类、回归、异常检测等领域都有广泛应用。
 
 - 训练结果如下：
-![Uploading FE3851AE084695868C7F9F9AE04B851D.png…]()
+![FE3851AE084695868C7F9F9AE04B851D](https://github.com/MengYueqi/2023HIT_TOC_Image_Identification/assets/93073249/4cbffa7d-e86d-41ff-a451-bd55e0597394)
+
 
 
 ## 使用深度学习方法进行识别
