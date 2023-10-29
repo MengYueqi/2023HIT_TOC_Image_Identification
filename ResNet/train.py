@@ -13,7 +13,9 @@ from model import resnet34
  
 def main():
     # 如果有NVIDA显卡，转到GPU训练，否则用CPU
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # 使用Mac上的GPU进行加速
+    device = torch.device("mps")
     print("using {} device.".format(device))
  
     data_transform = {
@@ -43,15 +45,16 @@ def main():
     assert os.path.exists(image_path), "{} path does not exist.".format(image_path)
     train_dataset = datasets.ImageFolder(root=os.path.join(image_path, "train"),
                                          transform=data_transform["train"])
+
     # 训练集长度
     train_num = len(train_dataset)
  
     # {'daisy':0, 'dandelion':1, 'roses':2, 'sunflower':3, 'tulips':4}
     # class_to_idx：获取分类名称对应索引
-    flower_list = train_dataset.class_to_idx
+    car_list = train_dataset.class_to_idx
     # dict()：创建一个新的字典
     # 循环遍历数组索引并交换val和key的值重新赋值给数组，这样模型预测的直接就是value类别值
-    cla_dict = dict((val, key) for key, val in flower_list.items())
+    cla_dict = dict((val, key) for key, val in car_list.items())
     # 把字典编码成json格式
     json_str = json.dumps(cla_dict, indent=4)
     # 把字典类别索引写入json文件
@@ -132,7 +135,6 @@ def main():
             logits = net(images.to(device))
             # 计算损失
             loss = loss_function(logits, labels.to(device))
-            # 反向传播
             # 清空过往梯度
             optimizer.zero_grad()
             # 反向传播，计算当前梯度
