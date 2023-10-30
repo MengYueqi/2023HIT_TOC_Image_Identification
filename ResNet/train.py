@@ -17,6 +17,10 @@ def main():
     # 使用Mac上的GPU进行加速
     device = torch.device("mps")
     print("using {} device.".format(device))
+
+    # 损失及准确度数组
+    train_loss = []
+    val_accuracy = []
  
     data_transform = {
         # 训练
@@ -112,7 +116,7 @@ def main():
     optimizer = optim.Adam(params, lr=0.0001)
  
     # 迭代次数（训练次数）
-    epochs = 3
+    epochs = 50
     # 用于判断最佳模型
     best_acc = 0.0
     # 最佳模型保存地址
@@ -174,6 +178,14 @@ def main():
         val_accurate = acc / val_num
         print('[epoch %d] train_loss: %.3f  val_accuracy: %.3f' %
               (epoch + 1, running_loss / train_steps, val_accurate))
+        # 记录损失及准确率
+        train_loss.append(running_loss / train_steps)
+        val_accuracy.append(val_accurate)
+        # 打印损失及准确率
+        print("train_loss is:")
+        print(train_loss)
+        print("val_accuracy is:")
+        print(val_accuracy)
  
         # 保存最好的模型权重
         if val_accurate > best_acc:
