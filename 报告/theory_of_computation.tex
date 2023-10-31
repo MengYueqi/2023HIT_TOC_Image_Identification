@@ -9,6 +9,8 @@
 \usepackage[graphicx]{realboxes}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{multicol}
+\usepackage{wrapfig}
 \usepackage[bookmarks=true,colorlinks,linkcolor=black]{hyperref}
 
 \title{不同图像识别技术的对比与探究}
@@ -17,6 +19,7 @@
 \begin{document}
 \maketitle
 
+% \begin{multicols}{2}
 \section{背景介绍}
 随着城市化进程的加速，车辆数量激增，交通管理难度加大。
 为了改善城市交通状况，保障出行安全，开发自动车辆识别系统势在必行。
@@ -146,9 +149,42 @@ AlexNet 主要特点：\par
 如果增大样本集规模，模型预测的准确率应该会有进一步提升。 \par
 在训练过程中发现，虽然损失函数值在下降，但是预测准确率却并未上升，有时甚至下降，这说明模型可能存在过拟合现象，这也可能是导致模型预测准确率不高的原因之一。
 
+\section{使用YOLO模型对对图像进行识别的效果分析}
+
+\subsection{YOLO模型简介}
+YOLO模型有很多版本，本文章使用的是较新的YOLOv8\footnote{YOLOv8的详细信息可以从https://github.com/ultralytics/ultralytics处获取。}模型。具体YOLOv8的架构如下图所示：
+
+\begin{figure}[H]
+    \centering %表示居中
+    \includegraphics[height=8cm]{../YOLO/pics/img1.png}
+    \caption{YOLOv8架构}
+\end{figure}
+
+% \begin{wrapfigure}{r}{8cm}
+%     \centering %表示居中
+%     \includegraphics[height=8cm]{../YOLO/pics/img1.png}
+%     \caption{YOLOv8架构}
+% \end{wrapfigure}
+
+通过此架构图，对比之前的 YOLO 模型，YOLOv8 主要进行了一下改动： \par
+1. 提供了一个全新的 SOTA 模型，包括 P5 640 和 P6 1280 分辨率的目标检测网络和基于 YOLACT 的实例分割模型。
+和 YOLOv5 一样，基于缩放系数也提供了 N/S/M/L/X 尺度的不同大小模型，用于满足不同场景需求。 \par
+2. 骨干网络和 Neck 部分可能参考了 YOLOv7 ELAN 设计思想，将 YOLOv5 的 C3 结构换成了梯度流更丰富的 C2f 结构，并对不同尺度模型调整了不同的通道数，属于对模型结构精心微调，不再是无脑一套参数应用所有模型，大幅提升了模型性能。
+不过这个 C2f 模块中存在 Split 等操作对特定硬件部署没有之前那么友好了。\par
+3. Head 部分相比 YOLOv5 改动较大，换成了目前主流的解耦头结构，将分类和检测头分离，同时也从 Anchor-Based 换成了 Anchor-Free。\par
+4. Loss 计算方面采用了 TaskAlignedAssigner 正样本分配策略，并引入了 Distribution Focal Loss。\par
+5. 训练的数据增强部分引入了 YOLOX 中的最后 10 epoch 关闭 Mosiac 增强的操作，可以有效地提升精度。\par
+
+\begin{figure}[H]
+    \centering %表示居中
+    \includegraphics[height=4.5cm]{../YOLO/pics/img.png}
+    \caption{历代YOLO对比}
+\end{figure}
+
 \newpage
 \small
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
 
+% \end{multicols}
 \end{document}
