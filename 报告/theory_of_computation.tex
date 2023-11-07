@@ -12,6 +12,8 @@
 \usepackage{multicol}
 \usepackage{wrapfig}
 \usepackage[bookmarks=true,colorlinks,linkcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
 
 \title{不同图像识别技术的对比与探究}
 \author{孟悦琦\quad 朱宸慷\quad 杨钧博\quad 李昌玟\quad 尹容乎}
@@ -136,12 +138,33 @@ AlexNet 主要特点：\par
 \subsection{使用AlexNet对图像进行识别的效果分析}
 
 训练结果如下：
+\begin{table}[H]
+    \begin{minipage}[b]{0.56\linewidth}
+    \centering
+    \begin{tabular}{c|c|c}
+        \hline
+        Epoch & Loss & Test Accuracy \\ \hline \hline
+        10 & 1.10 & 46.48 \\ \hline
+        20 & 0.75 & 58.00 \\ \hline
+        30 & 0.42 & 58.74 \\ \hline
+        40 & 0.34 & 57.37 \\ \hline
+        50 & 0.13 & 55.33 \\ \hline
+       \end{tabular}
+        \caption{随训练轮数增加Loss和Test Accuracy的变化}
+    \end{minipage}
+    \begin{minipage}[b]{0.4\linewidth}
+    \centering
+    \includegraphics[width=50mm]{../AlexNet/AlexNet.png}
+    \captionof{figure}{AlexNet训练结果}
+    \end{minipage}
+    \end{table}
 
-\begin{figure}[H]
-    \centering %表示居中
-    \includegraphics[height=4.5cm]{../AlexNet/AlexNet.png}
-    \caption{AlexNet训练结果}
-\end{figure}
+
+% \begin{wrapfigure}{r}{0.3\textwidth}
+%     \centering %表示居中
+%     \includegraphics[height=4cm]{../AlexNet/AlexNet.png}
+%     \caption{AlexNet训练结果}
+% \end{wrapfigure}
 
 在训练过程中，我们将数据集按 7：3 的比例划分为训练集和测试集。
 采用 AlexNet 进行训练，训练 50 轮后，发现模型对于测试集的预测准确率不断上升，最后趋于稳定，稳定在 55\% 左右；
@@ -152,7 +175,6 @@ AlexNet 主要特点：\par
 \section{YOLO对图像的识别分析}
 
 \subsection{YOLO模型简介}
-YOLO模型有很多版本，本文章使用的是较新的YOLOv8\footnote{YOLOv8的详细信息可以从https://github.com/ultralytics/ultralytics处获取。}模型。
 
 % \begin{figure}[H]
 %     \centering %表示居中
@@ -160,11 +182,13 @@ YOLO模型有很多版本，本文章使用的是较新的YOLOv8\footnote{YOLOv8
 %     \caption{YOLOv8架构}
 % \end{figure}
 
-\begin{wrapfigure}{r}{8cm}
+\begin{wrapfigure}{r}{0.45\textwidth}
     \centering %表示居中
-    \includegraphics[height=8cm]{../YOLO/pics/img1.png}
+    \includegraphics[height=7cm]{../YOLO/pics/img1.png}
     \caption{YOLOv8架构}
 \end{wrapfigure}
+
+YOLO模型有很多版本，本文章使用的是较新的YOLOv8\footnote{YOLOv8的详细信息可以从https://github.com/ultralytics/ultralytics处获取。}模型。
 
 通过架构图，对比之前的 YOLO 模型，YOLOv8 主要进行了一下改动： \par
 1. 提供了一个全新的 SOTA 模型，包括 P5 640 和 P6 1280 分辨率的目标检测网络和基于 YOLACT 的实例分割模型。
