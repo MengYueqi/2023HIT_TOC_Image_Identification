@@ -30,5 +30,27 @@ YOLO模型有很多版本，本文章使用的是较新的YOLOv8\footnote{YOLOv8
     \caption{历代YOLO对比}
 \end{figure}
 
+\subsection{YOLO的原理}
+
+YOLO的原理可以从以下五个方面阐述：\par
+1. 特征提取：YOLOv8使用深度CNN模型来提取图像特征。\par
+2. 划分网格：YOLOv8将输入的图片分割成 SxS 网格。每个单元格负责去检测那些中心点落在该格子内的目标。\par
+3. 预测边界框与类别：每个单元格会预测 B 个边界框（bounding box）以及边界框的置信度（confidence score）。
+置信度其实包含两个方面，一是这个边界框含有目标的可能性大小，二是这个边界框的准确度。
+边界框的大小与位置可以用4个值来表征： (x, y, w, h)，其中 (x, y) 是边界框的中心坐标，而 w 和 h 是边界框的宽与高。\par
+4. 特征金字塔网络：该模型利用特征金字塔网络来检测图像中不同大小和比例的对象。
+这个特征金字塔网络由多个层组成，这些层在不同的比例上检测对象，使得模型能够在图像中检测到大和小的对象。\par
+5. 后处理：最后处理网络预测结果得到最终的目标检测结果。\par
+
 
 \subsection{使用YOLO模型对图像进行识别的效果分析}
+
+通过观察YOLO模型生成的结果，可以发现，YOLO模型对于图像中的物体的识别效果较好，效果分析主要有以下两点：\par
+1. YOLO模型在10轮训练后，LOSS率降至最低，20轮后基本稳定。\par
+2. YOLO模型同时能够达到较高的准确度，在6轮后准确率基本超过95$\%$。\par
+
+\begin{figure}[H]
+    \centering %表示居中
+    \includegraphics[height=4.5cm]{../../YOLO/runs/classify/train2/results.png}
+    \caption{YOLO模型的结果分析}
+\end{figure}
