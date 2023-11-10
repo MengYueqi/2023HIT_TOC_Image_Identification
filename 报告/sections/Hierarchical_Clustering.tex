@@ -13,12 +13,17 @@
 \subsection{使用层次聚类对图像进行识别的效果分析}
 \begin{figure}[H]
     \centering
-    \subfigure[matiz blue]{
-        \includegraphics[width=3cm]{../dataset_graph/dataset_1.jpg}
-        \label{matiz blue}
+    \subfigure[训练结果1]{
+        \includegraphics[width=7cm]{../../Hierarchical_Clustering/Hierarchical_Clustering_1.png}
     }\quad
-    \subfigure[tiggo black]{
-        \includegraphics[width=3cm]{../dataset_graph/dataset_2.jpg}
-        \label{tiggo black}
-  }\end{figure}
-    
+    \subfigure[训练结果2]{
+        \includegraphics[width=7cm]{../../Hierarchical_Clustering/Hierarchical_Clustering_2.png}
+}\end{figure}
+
+数据集中的图像之间的差异在于车型和颜色。
+层次聚类是将彼此相似的图像聚集在一起形成群集的过程，形成得越快的群集其相似性就越大。
+为了便于理解，我们来看看树状图的黄色条形图，首先，X轴上的节点数，如19、32、80、98等，表示最初聚集在一起的群集中的图像数量。
+这是最初聚集在一起的最相似的图像群集。
+接下来，由19个图像组成的群集和由32个图像组成的群集在相似度数值500处形成了一个群集。
+这意味着与其他群集相比，由19个图像组成的群集和由32个图像组成的群集更为相似（相似度数值为500），因此它们聚集在一起形成了下一个群集。
+相似度数值越接近0，就越相似。通过这种层次化的方式，最终形成一个群集。在最开始群集的形成标准是车型和颜色中的哪一个，需要自主判断。
